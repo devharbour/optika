@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eyewear Catalog</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .product-price del {
+      color: gray;
+    }
+    .product-price span {
+      color: red;
+      font-weight: bold;
+    }
+    .blog-post img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .pagination {
+      justify-content: center;
+    }
+  </style>
+</head>
+<h2 style="text-align: center; padding: 20px;">Bezzi Eyewear Products</h2>
+<body class="bg-light">
+
+  <div class="container py-4">
+    <!-- Header + Filters -->
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <input type="text" id="searchBar" class="form-control" placeholder="Kërko sipas titullit...">
+      </div>
+      <div class="col-md-6">
+        <select id="categoryFilter" class="form-select">
+          <option value="">Filtro sipas kategorisë</option>
+          <option>Rayban</option>
+          <option>Rayban Ferrari</option>
+          <option>Emporio Armani</option>
+          <option>Rayban Optics</option>
+          <option>Persol</option>
+          <option>Lacoste</option>
+          <option>Tom Ford</option>
+          <option>Miu Miu</option>
+          <option>Burberry</option>
+          <option>Guess</option>
+          <option>Versace</option>
+          <option>Karl Lagerfeld</option>
+          <option>Police</option>
+          <option>Faconable</option>
+          <option>Carrera</option>
+          <option>Jaguar</option>
+          <option>Polo</option>
+          <option>Prada</option>
+          <option>Prada Sport</option>
+          <option>Hugo Boss</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div id="productContainer" class="row g-4"></div>
+
+    <!-- Pagination -->
+    <nav>
+      <ul id="pagination" class="pagination mt-4"></ul>
+    </nav>
+
+    <!-- Blog Section -->
+    <h4 class="mt-5 mb-3" style="text-align: center; padding: 20px;">Blog Posts</h4>
+    <div class="row">
+      <div class="col-md-4 blog-post">
+        <img src="pexel2.jpg" alt="">
+        <h6 class="mt-2">Syzet që përshtaten më së miri për ty</h6>
+        <p>Një guidë për të zgjedhur kornizën e duhur sipas formës së fytyrës.</p>
+        <a href="#">Lexo më shumë →</a>
+      </div>
+      <div class="col-md-4 blog-post">
+        <img src="pexel1.jpg" alt="">
+        <h6 class="mt-2">Trendët e verës 2025</h6>
+        <p>Zbulo koleksionet më të reja nga Gucci, Rayban dhe të tjerë.</p>
+        <a href="#">Lexo më shumë →</a>
+      </div>
+      <div class="col-md-4 blog-post">
+        <img src="pexel3.jpg" alt="">
+        <h6 class="mt-2">Pse duhet të investosh në syze cilësore?</h6>
+        <p>Rëndësia e mbrojtjes së syve nga rrezet UV dhe më shumë.</p>
+        <a href="#">Lexo më shumë →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+    const products = [
+      { title: "Rayban Classic RB7680S 90131 51", category: "Rayban", price: 380, discount: 346, image: "uploads/Rayban Classic.png" },
+      { title: "Rayban RB4435 901/31 56", category: "Rayban", price: 210, discount: 182, image: "uploads/rayban2.png" },
+      { title: "Rayban RB4407 67304L 57", category: "Rayban", price: 220, discount: 194, image: "uploads/rayban3.png" },
+      { title: "Rayban RB4392D 645087 66", category: "Rayban", price: 190, discount: 164, image: "uploads/rayban4.png" },
+      { title: "Rayban RB4407 135973 57", category: "Rayban", price: 210, discount: 182, image: "uploads/rayban5.png" },
+      { title: "Rayban RB4392D 601/87 66", category: "Rayban", price: 190, discount: 164, image: "uploads/rayban6.png" },
+      { title: "Rayban Ferrari Yellow RB3726-M F088/5J", category: "Rayban Ferrari", price: 220, discount: 195, image: "uploads/Raybanferr1.png" },
+      { title: "Rayban Ferrari RB8331-M F001/71", category: "Rayban Ferrari", price: 230, discount: 200, image: "uploads/Raybanferr2.png" },
+      { title: "Emporio Armani EA4224 5017T3 57", category: "Emporio Armani", price: 240, discount: 212, image: "uploads/Armani1.png" },
+      { title: "Emporio Armani EA4225U 500187 53", category: "Emporio Armani", price: 190, discount: 164, image: "uploads/Armani2.png" },
+      { title: "Emporio Armani EA4047 506381 56", category: "Emporio Armani", price: 240, discount: 212, image: "uploads/Armani3.png" },
+      { title: "Emporio Armani  EA3235U 5017 53", category: "Emporio Armani", price: 230, discount: 200, image: "uploads/Armani4.png" },
+      { title: "Emporio Armani EA3193 5544 54", category: "Emporio Armani", price: 190, discount: 164, image: "uploads/Armani5.png" },  
+      { title: "Rayban Optic RX5403D 2012 54", category: "Rayban Optics", price: 220, discount: 195, image: "uploads/raybanoptic.png" },
+      { title: "Rayban Optic RX5403D 2000 54", category: "Rayban Optics", price: 220, discount: 195, image: "uploads/raybanoptic2.png" },
+      { title: "Persol PO0649 119656 54", category: "Persol", price: 320, discount: 294, image: "uploads/Persol1.png" },
+      { title: "Lacoste L958S 022", category: "Lacoste", price: 200, discount: 170, image: "uploads/Lacoste1.png" },
+      { title: "Tom Ford TF858-F-N 01A", category: "Tom Ford", price: 310, discount: 280, image: "uploads/tomford1.png" },
+      { title: "Guess GU7886 52F", category: "Guess", price: 190, discount: 153, image: "uploads/Guess1.png" },
+      { title: "Versace 2280 1002", category: "Versace", price: 330, discount: 280, image: "uploads/Versace1.png" },
+      { title: "Jaguar 37254 - 4820", category: "Jaguar", price: 160, discount: 110, image: "uploads/Jaguar1.png" },
+      { title: "Police SPLL07", category: "Police", price: 160, discount: 110, image: "uploads/Police1.png" },
+      { title: "Hugo Boss 1142/F/S 00370", category: "Hugo Boss", price: 220, discount: 180, image: "uploads/HugoBoss1.png" },
+      { title: "Polo PH4162 5001/87", category: "Polo", price: 160, discount: 120, image: "uploads/Polo1.png" },
+      { title: "Carrera 257/S 003M9 Polarized", category: "Carrera", price: 160, discount: 125, image: "uploads/Carrera1.png" },
+      { title: "Karl Lagerfeld KL6125S 280", category: "Karl Lagerfeld", price: 260, discount: 230, image: "uploads/Lagerfeld.png" },
+      { title: "Facconable NV1004S E629", category: "Faconable", price: 260, discount: 230, image: "uploads/Facconable1.png" },
+      { title: "Burberry B3151 1316/87", category: "Burberry", price: 280, discount: 245, image: "uploads/Burberry1.png" },
+      { title: "Burberry BE4419 300273 54", category: "Burberry", price: 380, discount: 315, image: "uploads/Burberry2.png" },
+      { title: "Burberry 8056262081938", category: "Burberry", price: 380, discount: 315, image: "uploads/Burberry3.png" },
+      { title: "Miu Miu MU 11WS 1AB5S0 54", category: "Miu Miu", price: 480, discount: 420, image: "uploads/MiuMiu1.png" },
+      { title: "Miu Miu MU 06ZS 1AB5S0 50", category: "Miu Miu", price: 480, discount: 420, image: "uploads/MiuMiu2.png" },
+      { title: "Prada PR A58S 5AK90F 61", category: "Prada", price: 420, discount: 396, image: "uploads/Prada1.png" },
+      { title: "Prada Sport PS 50GV U6T1O1 55", category: "Prada Sport", price: 300, discount: 276, image: "uploads/Prada2.png" },
+      { title: "Prada PS 09OV 14C1O1 55", category: "Prada Sport", price: 300, discount: 276, image: "uploads/Prada3.png" },
+
+     
+    ];
+
+    const perPage = 12;
+    let currentPage = 1;
+
+    function displayProducts(filteredProducts) {
+      const container = $("#productContainer");
+      container.empty();
+
+      const start = (currentPage - 1) * perPage;
+      const end = start + perPage;
+      const pageItems = filteredProducts.slice(start, end);
+
+      pageItems.forEach(p => {
+        container.append(`
+          <div class="col-md-4">
+            <div class="card product-card">
+              <img src="${p.image}" class="card-img-top" alt="${p.title}">
+              <div class="card-body">
+                <h5 class="card-title">${p.title}</h5>
+                <p class="card-text text-muted">${p.category}</p>
+                <p class="product-price"><del>€${p.price}</del> <span>€${p.discount}</span></p>
+              </div>
+            </div>
+          </div>
+        `);
+      });
+    }
+
+    function updatePagination(filteredProducts) {
+      const totalPages = Math.ceil(filteredProducts.length / perPage);
+      const pagination = $("#pagination");
+      pagination.empty();
+
+      for (let i = 1; i <= totalPages; i++) {
+        pagination.append(`
+          <li class="page-item ${i === currentPage ? 'active' : ''}">
+            <a class="page-link" href="#">${i}</a>
+          </li>
+        `);
+      }
+
+      $(".page-link").click(function (e) {
+        e.preventDefault();
+        currentPage = parseInt($(this).text());
+        applyFilters();
+      });
+    }
+
+    function applyFilters() {
+      const searchTerm = $("#searchBar").val().toLowerCase();
+      const selectedCategory = $("#categoryFilter").val();
+      
+      const filtered = products.filter(p => {
+        return (
+          p.title.toLowerCase().includes(searchTerm) &&
+          (selectedCategory === "" || p.category === selectedCategory)
+        );
+      });
+
+      displayProducts(filtered);
+      updatePagination(filtered);
+    }
+
+    $(document).ready(() => {
+      applyFilters();
+      $("#searchBar, #categoryFilter").on("input change", function () {
+        currentPage = 1;
+        applyFilters();
+      });
+    });
+  </script>
+</body>
+</html>
