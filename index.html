@@ -82,6 +82,21 @@
   </div>
 </nav>
 
+      <div class="col-md-4">
+  <select id="genderFilter" class="form-select">
+    <option value="">Filtro sipas gjinisë</option>
+    <option value="meshkuj">Meshkuj</option>
+    <option value="femra">Femra</option>
+  </select>
+</div>
+<div class="col-md-4">
+  <select id="typeFilter" class="form-select">
+    <option value="">Filtro sipas llojit</option>
+    <option value="dielli">Sy Dielli</option>
+    <option value="optike">Optikë</option>
+  </select>
+</div>
+
   <h2 class="text-center py-3">Bezzi Eyewear Products</h2>
   <div class="container py-4">
     <div class="row mb-4">
@@ -116,21 +131,6 @@
         </select>
       </div>
     </div>
-
-    <div class="col-md-4">
-  <select id="genderFilter" class="form-select">
-    <option value="">Filtro sipas gjinisë</option>
-    <option value="meshkuj">Meshkuj</option>
-    <option value="femra">Femra</option>
-  </select>
-</div>
-<div class="col-md-4">
-  <select id="typeFilter" class="form-select">
-    <option value="">Filtro sipas llojit</option>
-    <option value="dielli">Sy Dielli</option>
-    <option value="optike">Optikë</option>
-  </select>
-</div>
     
     <div id="productContainer" class="row g-4"></div>
     <nav><ul id="pagination" class="pagination mt-4"></ul></nav>
@@ -159,6 +159,8 @@
         category: "Rayban Marshall",
         price: 260,
         discount: 210,
+        gender: mashkull,
+        type: dielli
         images: ["uploads/raybanm4.png", "uploads/raybanm3.png"]
       },
        {
@@ -430,6 +432,7 @@ function applyFilters() {
   </script>
 </body>
 </html>
+
 
 
 
