@@ -21,14 +21,14 @@ body { background-color: #f8f9fa; }
 .product-card img { width: 100%; height: 220px; object-fit: cover; }
 .product-price del { color: gray; }
 .product-price span { color: red; font-weight: bold; }
-.navbar { padding-top: 0.2rem; padding-bottom: 0.2rem; min-height: 100px; align-items: center; }
+.navbar { padding: 0.5rem 1rem; min-height: 100px; align-items: center; }
 .logo-img { height: 140px; width: auto; object-fit: contain; display: block; }
 .carousel-control-prev-icon, .carousel-control-next-icon { background-color: rgba(0,0,0,0.5); border-radius: 50%; }
 </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-3">
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
     <a class="navbar-brand d-flex align-items-center" href="#">
         <img src="uploads/logo.png" alt="Bezzi Logo" class="logo-img">
     </a>
@@ -71,8 +71,8 @@ body { background-color: #f8f9fa; }
         <div class="col-md-3">
             <select id="typeFilter" class="form-select">
                 <option value="">Filtro sipas tipit</option>
-                <option>Optical</option>
                 <option>Sun</option>
+                <option>Optical</option>
             </select>
         </div>
         <div class="col-md-3">
@@ -86,6 +86,7 @@ body { background-color: #f8f9fa; }
     </div>
 
     <div id="productContainer" class="row g-4"></div>
+
     <nav>
         <ul id="pagination" class="pagination mt-4 justify-content-center"></ul>
     </nav>
@@ -108,7 +109,7 @@ const products = [
   { title: "Rayban Optic RX5403D 2012 54", category: "Rayban Optics", price: 220, discount: 195, image: "uploads/raybanoptic.png", type: "Optical", gender: "Unisex" },
   { title: "Emporio Armani EA4224 5017T3 57", category: "Emporio Armani", price: 240, discount: 212, image: "uploads/Armani1.png", type: "Sun", gender: "Unisex" },
   { title: "Jaguar 37254 - 4820", category: "Jaguar", price: 160, discount: 110, images: ["uploads/Jaguar1.png", "uploads/jg11.jpg"], type: "Sun", gender: "Male" }
-  // Shto këtu të gjithë produktet e mbetura në të njëjtin format me type dhe gender
+  // Vazhdoni të shtoni këtu të gjithë produktet sipas listës tuaj me type dhe gender
 ];
 
 const perPage = 12;
