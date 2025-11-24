@@ -6,105 +6,125 @@
   <title>Bezzi Eyewear Products</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-  <style>
- .product-card {
-  border: 1px solid #bbb;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease-in-out;
-  height: 100%; /* e rëndësishme për të mbushur lartësinë */
-  display: flex;
-  flex-direction: column;
-}
-  .product-card img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-  }
+    .product-card {
+      border: 1px solid #bbb;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s ease-in-out;
+      height: 100%; /* e rëndësishme për të mbushur lartësinë */
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
 
-  .product-price del {
-    color: gray;
-  }
+    .product-price del {
+      color: gray;
+    }
 
-  .product-price span {
-    color: red;
-    font-weight: bold;
-  }
+    .product-price span {
+      color: red;
+      font-weight: bold;
+    }
 
-  .blog-post img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-  }
+    .blog-post img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
 
-  .pagination {
-    justify-content: center;
-  }
+    .pagination {
+      justify-content: center;
+    }
 
-.logo-img {
-  height: 140px; /* ose 130 nëse duket më mirë */
-  width: auto;
-  object-fit: contain;
-  display: block;
-}
+    .logo-img {
+      height: 140px; /* ose 130 nëse duket më mirë */
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
 
-.navbar {
-  padding-top: 0.1rem;
-  padding-bottom: 0.1rem;
-  min-height: 100px; /* kontrollon lartësinë maksimale */
-  align-items: center;
-}
+    .navbar {
+      padding-top: 0.1rem;
+      padding-bottom: 0.1rem;
+      min-height: 100px; /* kontrollon lartësinë maksimale */
+      align-items: center;
+    }
 
-  .carousel-control-prev-icon,
-  .carousel-control-next-icon {
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-  }
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+    }
 
-  [ LOGO ]  Bezzi Eyewear
+    .filter-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
 
-</style>
+    .filter-container .form-select, .filter-container .form-control {
+      width: 100%;
+      max-width: 220px;
+    }
 
+    .logo-img {
+      height: 140px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .filter-container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
   </style>
 </head>
 <body class="bg-light">
   <nav class="navbar navbar-expand-lg navbar-light bg-white px-3 shadow-sm">
-  <a class="navbar-brand d-flex align-items-center" href="#">
- <img src="uploads/logo.png" alt="Bezzi Logo" class="logo-img">
-    <span class="ms-2 fw-bold"></span>
-  </a>
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarMenu">
-    <!-- Mund të shtosh menu të tjera këtu në të ardhmen -->
-  </div>
-    
-      <div class="col-md-4">
-  <select id="genderFilter" class="form-select">
-    <option value="">Filtro sipas gjinisë</option>
-    <option value="meshkuj">Meshkuj</option>
-    <option value="femra">Femra</option>
-  </select>
-</div>
-<div class="col-md-4">
-  <select id="typeFilter" class="form-select">
-    <option value="">Filtro sipas llojit</option>
-    <option value="dielli">Sy Dielli</option>
-    <option value="optike">Optikë</option>
-  </select>
-</div>
-    
-</nav>
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src="uploads/logo.png" alt="Bezzi Logo" class="logo-img">
+      <span class="ms-2 fw-bold">Bezzi Eyewear</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarMenu"></div>
+  </nav>
 
   <h2 class="text-center py-3">Bezzi Eyewear Products</h2>
+
   <div class="container py-4">
-    <div class="row mb-4">
-      <div class="col-md-6">
+    <!-- Filtra në një rresht horizontal -->
+    <div class="filter-container">
+      <div class="col-md-3">
         <input type="text" id="searchBar" class="form-control" placeholder="Kërko sipas titullit...">
       </div>
-      <div class="col-md-6">
+      <div class="col-md-3">
+        <select id="genderFilter" class="form-select">
+          <option value="">Filtro sipas gjinisë</option>
+          <option value="meshkuj">Meshkuj</option>
+          <option value="femra">Femra</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <select id="typeFilter" class="form-select">
+          <option value="">Filtro sipas llojit</option>
+          <option value="dielli">Sy Dielli</option>
+          <option value="optike">Optikë</option>
+        </select>
+      </div>
+      <div class="col-md-3">
         <select id="categoryFilter" class="form-select">
           <option value="">Filtro sipas kategorisë</option>
           <option>Rayban</option>
@@ -132,7 +152,7 @@
         </select>
       </div>
     </div>
-    
+
     <div id="productContainer" class="row g-4"></div>
     <nav><ul id="pagination" class="pagination mt-4"></ul></nav>
   </div>
@@ -141,187 +161,16 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     const products = [
-      {
-        title: "Rayban Ferrari Red RB8331-MF001/71",
-        category: "Rayban Ferrari",
-        price: 250,
-        discount: 200,
-        images: ["uploads/Raybanferr2.png", "uploads/raybanferr3.png", "uploads/raybanferr4.jpg"]
-      },
-      {
-        title: "Rayban Marshall RB 3648-M The Marshall || 004/71",
-        category: "Rayban Marshall",
-        price: 220,
-        discount: 180,
-        images: ["uploads/raybanm1.jpg", "uploads/raybanm2.jpg"]
-      },
-       {
-        title: "Rayban Marshall RB 3648-M The Marshall || 002/58",
-        category: "Rayban Marshall",
-        price: 260,
-        discount: 210,
-        gender: mashkull,
-        type: dielli
-        images: ["uploads/raybanm4.png", "uploads/raybanm3.png"]
-      },
-       {
-        title: "Rayban RB3663 004/3M",
-        category: "Rayban",
-        price: 200,
-        discount: 175,
-        images: ["uploads/ray66.jpg", "uploads/ray67.jpg"]
-      },
-       {
-        title: "Ralph Lauren RA 5322U 5536/87",
-        category: "Ralph Lauren",
-        price: 190,
-        discount: 140,
-        images: ["uploads/Ralph2.jpg", "uploads/Ralph1.jpg"]
-      },
-      {
-        title: "Rayban Ferrari Yellow RB3726-M F088/5J",
-        category: "Rayban Ferrari",
-        price: 220,
-        discount: 195,
-        images: ["uploads/Raybanferr1.png", "uploads/raybanferr5.jpg", "uploads/raybanferr6.jpg" ]
-      },
-      {
-        title: "Rayban Classic RB7680S 90131 51",
-        category: "Rayban",
-        price: 200,
-        discount: 175,
-        images: ["uploads/raybancateye.jpg", "uploads/raybancateye2.jpg" ]
-      },
-
-        {
-        title: "Rayban Cateye RB4457D 667/87",
-        category: "Rayban",
-        price: 380,
-        discount: 346,
-        images: ["uploads/Rayban Classic.png", "uploads/raybanultra.png" ]
-      },
-      
-       { title: "Rayban RB4435 901/31 56", category: "Rayban", price: 210, discount: 182, image: "uploads/rayban2.png" },
-      { title: "Rayban RB4407 67304L 57", category: "Rayban", price: 220, discount: 194, image: "uploads/rayban3.png" },
-     {
-        title: "Rayban Classic Rayban RB4392D 601/87 66",
-        category: "Rayban",
-        price: 190,
-        discount: 164,
-        images: ["uploads/rayban6.png", "uploads/raybannew.png" ]
-      },
-      { title: "Rayban RB4392D 645087 66", category: "Rayban", price: 190, discount: 164, image: "uploads/rayban4.png" },
-      { title: "Rayban RB4392D 645087 66", category: "Rayban", price: 220, discount: 195, image: "uploads/rb1.png" },
-      { title: "Rayban RB2283 902/31 55", category: "Rayban", price: 230, discount: 207, image: "uploads/rb2.jpg" },
-      { title: "Rayban RB3025 001/51 55", category: "Rayban", price: 230, discount: 207, image: "uploads/rb3.jpg" },
-       { title: "Rayban RB3025 002/51 58", category: "Rayban", price: 230, discount: 207, image: "uploads/rb4.jpg" },
-        { title: "Rayban RB3025 002/58 55", category: "Rayban", price: 290, discount: 255, image: "uploads/rb6.jpg" },
-        { title: "RB3025 004/71 62", category: "Rayban", price: 230, discount: 207, image: "uploads/rb0.jpg" },
-
-      { title: "Rayban RB2132 901 58", category: "Rayban", price: 200, discount: 182, image: "uploads/RaybanFin3.png" },
-      { title: "Rayban RB2140 6641R5 50", category: "Rayban", price: 220, discount: 195, image: "uploads/RaybanFin4.png" },
-      { title: "Emporio Armani EA4224 5017T3 57", category: "Emporio Armani", price: 240, discount: 212, image: "uploads/Armani1.png" },
-      { title: "Emporio Armani EA4047 506381 56", category: "Emporio Armani", price: 240, discount: 212, image: "uploads/Armani3.png" },
-      { title: "Emporio Armani  EA3235U 5017 53", category: "Emporio Armani", price: 230, discount: 200, image: "uploads/Armani4.png" },
-      { title: "Rayban Optic RX5403D 2012 54", category: "Rayban Optics", price: 220, discount: 195, image: "uploads/raybanoptic.png" },
-      { title: "Rayban Optic RX5403D 2000 54", category: "Rayban Optics", price: 220, discount: 195, image: "uploads/raybanoptic2.png" },
-      { title: "Rayban Optic RX6375 2890 51", category: "Rayban Optics", price: 200, discount: 176, image: "uploads/Optika1.png" },
-      { title: "Rayban Optic RX6465 2509 51", category: "Rayban Optics", price: 220, discount: 195, image: "uploads/Optika2.png" },
-      { title: "Rayban Optic RX6448 2500 51", category: "Rayban Optics", price: 220, discount: 195, image: "uploads/Optika33.png" },
-      { title: "Rayban Optic RX6466 3102 51", category: "Rayban Optics", price: 240, discount: 207, image: "uploads/Optika44.png" },
-      { title: "Rayban Optic RX6496 3094 51", category: "Rayban Optics", price: 220, discount: 195, image: "uploads/Optika78.png" },
-      { title: "Rayban Optic RX6489 2503 55", category: "Rayban Optics", price: 220, discount: 195, image: "uploads/Optika77.png" },
-      { title: "Rayban Optic RX6489 2500 55", category: "Rayban Optics", price: 220, discount: 195, image: "uploads/Optika66.png" },
-      { title: "Rayban Optic RX6498 2500 55", category: "Rayban Optics", price: 220, discount: 195, image: "uploads/opticray1.png" },
-      { title: "Rayban Optic RX7017 5196 52", category: "Rayban Optics", price: 230, discount: 207, image: "uploads/Opticray2.png" },
-      { title: "Rayban Optic RX7199 5204 52", category: "Rayban Optics", price: 260, discount: 232, image: "uploads/opray3.png" },
-      { title: "Rayban Optic RX7199 8063 54", category: "Rayban Optics", price: 260, discount: 232, image: "uploads/opticray4.png" },
-      { title: "Rayban Optic RB3447 001/71 50", category: "Rayban", price: 230, discount: 207, image: "uploads/rayub.png" },
-      { title: "Rayban Optic RB3547 001/31 51", category: "Rayban", price: 220, discount: 195, image: "uploads/Rayo.png" },
-      { title: "RB3547 001/3M 51", category: "Rayban", price: 230, discount: 207, image: "uploads/rb66.jpg" },
-      { title: "RB3547 002/B1 51", category: "Rayban", price: 220, discount: 195, image: "uploads/rauo.png" },
-      { title: "RB3547 001/3M 51", category: "Rayban", price: 230, discount: 207, image: "uploads/ultraben.png" },
-      { title: "RB3548 001/BH 51", category: "Rayban", price: 230, discount: 207, image: "uploads/ultraben2.png" },
-      { title: "RB3707 9257R5 57", category: "Rayban", price: 220, discount: 195, image: "uploads/ultraben3.png" },
-      { title: "RB3735 001/31 57", category: "Rayban", price: 220, discount: 195, image: "uploads/ultraben4.png" },
-      { title: "RB3809 001/31 53", category: "Rayban", price: 220, discount: 195, image: "uploads/ylli.png" },
-      { title: "RB3809 001/31 53", category: "Rayban", price: 220, discount: 195, image: "uploads/ylli.png" },
-      { title: "RB4147 601/32 60", category: "Rayban", price: 220, discount: 194, image: "uploads/ylli2.png" },
-      { title: "RB4171 60028G 54", category: "Rayban", price: 200, discount: 175, image: "uploads/ylli3.png" },
-      { title: "RB4181 601/87 57", category: "Rayban", price: 210, discount: 182, image: "uploads/ylli4.png" },
-      { title: "RB4260D 645087 57", category: "Rayban", price: 190, discount: 164, image: "uploads/ylli5.png" },
-
-      { title: "Rayban Optic RX7228 2012 55", category: "Rayban Optics", price: 200, discount: 176, image: "uploads/opticr5.png" },
-      { title: "Rayban Optic RX7228 8257 55", category: "Rayban Optics", price: 320, discount: 290, image: "uploads/opticr5.png" },
-       { title: "Rayban Optic RX7228 8257 55", category: "Rayban Optics", price: 200, discount: 176, image: "uploads/rayo6.png" },
-      { title: "Persol PO0649 119656 54", category: "Persol", price: 320, discount: 294, image: "uploads/Persol1.png" },
-      { title: "Lacoste L958S 022", category: "Lacoste", price: 200, discount: 170, image: "uploads/Lacoste1.png" },
-       { title: "Lacoste L959S 022", category: "Lacoste", price: 200, discount: 170, image: "uploads/LC0.jpg" },
-      { title: "Tom Ford TF858-F-N 01A", category: "Tom Ford", price: 310, discount: 280, image: "uploads/tomford1.png" },
-      { title: "Guess GU7886 52F", category: "Guess", price: 190, discount: 153, image: "uploads/Guess1.png" },
-      { title: "Versace 2280 1002", category: "Versace", price: 330, discount: 280, image: "uploads/Versace1.png" },
-      { title: "Versace MOD.2164 1001/87", category: "Versace", price: 280, discount: 220, image: "uploads/versaceunik.png" },
-      { title: "Versace MOD.4464 GB1/87", category: "Versace", price: 300, discount: 265, image: "uploads/versacemen.jpg" },
-     
-       {
-        title: "Jaguar 37254 - 4820",
-        category: "Jaguar",
-        price: 160,
-        discount: 110,
-        images: ["uploads/Jaguar1.png", "uploads/jg11.jpg" ]
-      },
-
-       {
-        title: "Jaguar 37251-8840",
-        category: "Jaguar",
-        price: 140,
-        discount: 110,
-        images: ["uploads/Jaguar2.png", "uploads/jg3.png" ]
-      },
-
-        {
-        title: "Burberry B 4403 3858",
-        category: "Burberry",
-        price: 300,
-        discount: 270,
-        images: ["uploads/burberrymen3.jpg", "uploads/burberrymen1.jpg", "uploads/burberrymen2.jpg" ]
-      },
-
-       {
-        title: "Burberry B 4379-D",
-        category: "Burberry",
-        price: 260,
-        discount: 210,
-        images: ["uploads/burberrywoman1.jpg", "uploads/burberrywoman2.jpg"]
-      },
-      
-      { title: "Hugo Boss 1142/F/S 00370", category: "Hugo Boss", price: 220, discount: 180, image: "uploads/HugoBoss1.png" },
-      { title: "Carrera 257/S 003M9 Polarized", category: "Carrera", price: 160, discount: 125, image: "uploads/Carrera1.png" },
-      { title: "Karl Lagerfeld KL6125S 280", category: "Karl Lagerfeld", price: 260, discount: 230, image: "uploads/Lagerfeld.png" },
-       {
-        title: "Police SPLL07",
-        category: "Police",
-        price: 240,
-        discount: 212,
-        images: ["uploads/police2.jpg", "uploads/Police1.png"]
-      },
-
-      { title: "Facconable NV1004S E629", category: "Faconable", price: 260, discount: 230, image: "uploads/Facconable1.png" },
-      { title: "Burberry B3151 1316/87", category: "Burberry", price: 280, discount: 245, image: "uploads/Burberry1.png" },
-      { title: "Burberry BE4419 300273 54", category: "Burberry", price: 380, discount: 315, image: "uploads/Burberry2.png" },
-      { title: "Burberry 8056262081938", category: "Burberry", price: 380, discount: 315, image: "uploads/Burberry3.png" },
-      { title: "Emporio Armani EA3190 5576 53", category: "Emporio Armani", price: 220, discount: 189, image: "uploads/armani8.png" },
-      { title: "Emporio Armani EA3069 5063 55", category: "Emporio Armani", price: 220, discount: 189, image: "uploads/armani9.png" },
-      { title: "Emporio Armani EA1143 3003 57", category: "Emporio Armani", price: 220, discount: 189, image: "uploads/armani10.jpg" },
-      { title: "Emporio Armani EA1079 3094 55", category: "Emporio Armani", price: 220, discount: 189, image: "uploads/armani11.jpg" },
-      { title: "Emporio Armani EA1059 3001 53", category: "Emporio Armani", price: 200, discount: 164, image: "uploads/armani12.png" },
-      { title: "Emporio Armani EA1059 3001 53", category: "Emporio Armani", price: 200, discount: 189, image: "uploads/armani13.png" },
-      { title: "Miu Miu MU 11WS 1AB5S0 54", category: "Miu Miu", price: 480, discount: 420, image: "uploads/miu1.jpg" },
-      { title: "Miu Miu MU 06ZS 1AB5S0 50", category: "Miu Miu", price: 480, discount: 420, image: "uploads/MiuMiu2.png" },
-      { title: "Prada PR A58S 5AK90F 61", category: "Prada", price: 420, discount: 396, image: "uploads/Prada1.png" },
-      { title: "Prada Sport PS 50GV U6T1O1 55", category: "Prada Sport", price: 300, discount: 276, image: "uploads/Prada2.png" },
-      { title: "Prada PS 09OV 14C1O1 55", category: "Prada Sport", price: 300, discount: 276, image: "uploads/Prada3.png" },
-
+      { title: "Rayban Ferrari Red RB8331-MF001/71", category: "Rayban Ferrari", price: 250, discount: 200, images: ["uploads/Raybanferr2.png", "uploads/raybanferr3.png", "uploads/raybanferr4.jpg"] },
+      { title: "Rayban Marshall RB 3648-M The Marshall || 004/71", category: "Rayban Marshall", price: 220, discount: 180, images: ["uploads/raybanm1.jpg", "uploads/raybanm2.jpg"] },
+      { title: "Rayban Marshall RB 3648-M The Marshall || 002/58", category: "Rayban Marshall", price: 260, discount: 210, gender: "meshkuj", type: "dielli", images: ["uploads/raybanm4.png", "uploads/raybanm3.png"] },
+      { title: "Rayban RB3663 004/3M", category: "Rayban", price: 200, discount: 175, images: ["uploads/ray66.jpg", "uploads/ray67.jpg"] },
+      { title: "Ralph Lauren RA 5322U 5536/87", category: "Ralph Lauren", price: 190, discount: 140, images: ["uploads/Ralph2.jpg", "uploads/Ralph1.jpg"] },
+      { title: "Rayban Ferrari Yellow RB3726-M F088/5J", category: "Rayban Ferrari", price: 220, discount: 195, images: ["uploads/Raybanferr1.png", "uploads/raybanferr5.jpg", "uploads/raybanferr6.jpg"] },
+      { title: "Rayban Classic RB7680S 90131 51", category: "Rayban", price: 200, discount: 175, images: ["uploads/raybancateye.jpg", "uploads/raybancateye2.jpg"] },
+      { title: "Rayban Cateye RB4457D 667/87", category: "Rayban", price: 380, discount: 346, images: ["uploads/Rayban Classic.png", "uploads/raybanultra.png"] },
+      { title: "Rayban RB4435 901/31 56", category: "Rayban", price: 210, discount: 182, image: "uploads/rayban2.png" },
+      // Lista e plotë e produkteve vazhdon
     ];
 
     const perPage = 12;
@@ -391,41 +240,29 @@
         applyFilters();
       });
     }
-function applyFilters() {
-  const searchTerm = $("#searchBar").val().toLowerCase();
-  const selectedCategory = $("#categoryFilter").val();
-  const selectedGender = $("#genderFilter").val();  // Filtri për meshkuj dhe femra
-  const selectedType = $("#typeFilter").val();  // Filtri për sy dielli dhe optikë
-  
-  const filtered = products.filter(p => {
-    const matchesSearch = p.title.toLowerCase().includes(searchTerm);
-    const matchesCategory = selectedCategory === "" || p.category === selectedCategory;
-    const matchesGender = selectedGender === "" || p.gender === selectedGender;  // Filtrim për gjininë
-    const matchesType = selectedType === "" || p.type === selectedType;  // Filtrim për llojin (dielli/optike)
-    
-    return matchesSearch && matchesCategory && matchesGender && matchesType;
-  });
-
-  displayProducts(filtered);
-  updatePagination(filtered);
-}
 
     function applyFilters() {
       const searchTerm = $("#searchBar").val().toLowerCase();
       const selectedCategory = $("#categoryFilter").val();
+      const selectedGender = $("#genderFilter").val();  // Filtri për meshkuj dhe femra
+      const selectedType = $("#typeFilter").val();  // Filtri për sy dielli dhe optikë
+      
       const filtered = products.filter(p => {
-        return (
-          p.title.toLowerCase().includes(searchTerm) &&
-          (selectedCategory === "" || p.category === selectedCategory)
-        );
+        const matchesSearch = p.title.toLowerCase().includes(searchTerm);
+        const matchesCategory = selectedCategory === "" || p.category === selectedCategory;
+        const matchesGender = selectedGender === "" || p.gender === selectedGender;
+        const matchesType = selectedType === "" || p.type === selectedType;
+        
+        return matchesSearch && matchesCategory && matchesGender && matchesType;
       });
+
       displayProducts(filtered);
       updatePagination(filtered);
     }
 
     $(document).ready(() => {
       applyFilters();
-      $("#searchBar, #categoryFilter").on("input change", function () {
+      $("#searchBar, #categoryFilter, #genderFilter, #typeFilter").on("input change", function () {
         currentPage = 1;
         applyFilters();
       });
@@ -433,8 +270,6 @@ function applyFilters() {
   </script>
 </body>
 </html>
-
-
 
 
 
