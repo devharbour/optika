@@ -5,10 +5,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bezzi Eyewear Products</title>
-    <!-- Bootstrap CSS for styling -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <style>
-        /* Custom styles for product cards and other elements */
+        /* Custom styles for product cards */
         .product-card {
             border: 1px solid #bbb;
             border-radius: 20px;
@@ -35,10 +34,6 @@
             font-weight: bold;
         }
 
-        .pagination {
-            justify-content: center;
-        }
-
         .logo-img {
             height: 140px;
             width: auto;
@@ -58,6 +53,22 @@
             background-color: rgba(0, 0, 0, 0.5);
             border-radius: 50%;
         }
+
+        /* Make sure the search bar and filters are responsive */
+        .filter-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: space-between;
+        }
+
+        .filter-row .col-md-3 {
+            max-width: 220px;
+        }
+
+        .pagination {
+            justify-content: center;
+        }
     </style>
 </head>
 
@@ -66,39 +77,23 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white px-3 shadow-sm">
         <a class="navbar-brand d-flex align-items-center" href="#">
             <img src="uploads/logo.png" alt="Bezzi Logo" class="logo-img">
+            <span class="ms-2 fw-bold">Bezzi Eyewear</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarMenu"></div>
-
-        <!-- Gender and Type Filters -->
-        <div class="col-md-4">
-            <select id="genderFilter" class="form-select">
-                <option value="">Filter by Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-            </select>
-        </div>
-        <div class="col-md-4">
-            <select id="typeFilter" class="form-select">
-                <option value="">Filter by Type</option>
-                <option value="sunglasses">Sunglasses</option>
-                <option value="optical">Optical</option>
-            </select>
-        </div>
     </nav>
 
-    <!-- Page Title -->
     <h2 class="text-center py-3">Bezzi Eyewear Products</h2>
 
     <!-- Filters and Search Bar -->
     <div class="container py-4">
-        <div class="row mb-4">
-            <div class="col-md-6">
+        <div class="filter-row">
+            <div class="col-md-3">
                 <input type="text" id="searchBar" class="form-control" placeholder="Search by title...">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <select id="categoryFilter" class="form-select">
                     <option value="">Filter by Category</option>
                     <option>Rayban</option>
@@ -110,14 +105,33 @@
                     <option>Persol</option>
                     <option>Lacoste</option>
                     <option>Tom Ford</option>
+                    <option>Miu Miu</option>
+                    <option>Burberry</option>
                     <option>Guess</option>
                     <option>Versace</option>
-                    <option>Jaguar</option>
-                    <option>Burberry</option>
-                    <option>Hugo Boss</option>
-                    <option>Carrera</option>
+                    <option>Karl Lagerfeld</option>
                     <option>Police</option>
+                    <option>Faconable</option>
+                    <option>Carrera</option>
+                    <option>Jaguar</option>
+                    <option>Polo</option>
                     <option>Prada</option>
+                    <option>Prada Sport</option>
+                    <option>Hugo Boss</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select id="genderFilter" class="form-select">
+                    <option value="">Filter by Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select id="typeFilter" class="form-select">
+                    <option value="">Filter by Type</option>
+                    <option value="sunglasses">Sunglasses</option>
+                    <option value="optical">Optical</option>
                 </select>
             </div>
         </div>
@@ -137,239 +151,124 @@
 
     <!-- Custom JavaScript -->
     <script>
-        // Array of products (list all products as given initially)
         const products = [
-            {
-                title: "Rayban Ferrari Red RB8331-MF001/71",
-                category: "Rayban Ferrari",
-                price: 250,
-                discount: 200,
-                images: ["uploads/Raybanferr2.png", "uploads/raybanferr3.png", "uploads/raybanferr4.jpg"]
-            },
-            {
-                title: "Rayban Marshall RB 3648-M The Marshall || 004/71",
-                category: "Rayban Marshall",
-                price: 220,
-                discount: 180,
-                images: ["uploads/raybanm1.jpg", "uploads/raybanm2.jpg"]
-            },
-            {
-                title: "Rayban Marshall RB 3648-M The Marshall || 002/58",
-                category: "Rayban Marshall",
-                price: 260,
-                discount: 210,
-                gender: "male",
-                type: "sunglasses",
-                images: ["uploads/raybanm4.png", "uploads/raybanm3.png"]
-            },
-            {
-                title: "Rayban RB3663 004/3M",
-                category: "Rayban",
-                price: 200,
-                discount: 175,
-                images: ["uploads/ray66.jpg", "uploads/ray67.jpg"]
-            },
-            {
-                title: "Ralph Lauren RA 5322U 5536/87",
-                category: "Ralph Lauren",
-                price: 190,
-                discount: 140,
-                images: ["uploads/Ralph2.jpg", "uploads/Ralph1.jpg"]
-            },
-            {
-                title: "Rayban Ferrari Yellow RB3726-M F088/5J",
-                category: "Rayban Ferrari",
-                price: 220,
-                discount: 195,
-                images: ["uploads/Raybanferr1.png", "uploads/raybanferr5.jpg", "uploads/raybanferr6.jpg"]
-            },
-            {
-                title: "Rayban Classic RB7680S 90131 51",
-                category: "Rayban",
-                price: 200,
-                discount: 175,
-                images: ["uploads/raybancateye.jpg", "uploads/raybancateye2.jpg"]
-            },
-            {
-                title: "Rayban Cateye RB4457D 667/87",
-                category: "Rayban",
-                price: 380,
-                discount: 346,
-                images: ["uploads/Rayban Classic.png", "uploads/raybanultra.png"]
-            },
-            {
-                title: "Rayban RB4435 901/31 56",
-                category: "Rayban",
-                price: 210,
-                discount: 182,
-                image: "uploads/rayban2.png"
-            },
-            {
-                title: "Rayban RB4407 67304L 57",
-                category: "Rayban",
-                price: 220,
-                discount: 194,
-                image: "uploads/rayban3.png"
-            },
-            {
-                title: "Rayban Classic Rayban RB4392D 601/87 66",
-                category: "Rayban",
-                price: 190,
-                discount: 164,
-                images: ["uploads/rayban6.png", "uploads/raybannew.png"]
-            },
-            {
-                title: "Rayban RB4392D 645087 66",
-                category: "Rayban",
-                price: 190,
-                discount: 164,
-                image: "uploads/rayban4.png"
-            },
-            {
-                title: "Rayban RB4392D 645087 66",
-                category: "Rayban",
-                price: 220,
-                discount: 195,
-                image: "uploads/rb1.png"
-            },
-            {
-                title: "Rayban RB2283 902/31 55",
-                category: "Rayban",
-                price: 230,
-                discount: 207,
-                image: "uploads/rb2.jpg"
-            },
-            {
-                title: "Rayban RB2132F 604287 52",
-                category: "Rayban",
-                price: 240,
-                discount: 210,
-                images: ["uploads/rayban63.png", "uploads/rayban67.png"]
-            },
-            {
-                title: "Persol 3205S 95/31",
-                category: "Persol",
-                price: 370,
-                discount: 300,
-                images: ["uploads/persol1.jpg", "uploads/persol2.jpg"]
-            },
-            {
-                title: "Lacoste L807S 214",
-                category: "Lacoste",
-                price: 220,
-                discount: 195,
-                images: ["uploads/lacoste1.jpg", "uploads/lacoste2.jpg"]
-            },
-            {
-                title: "Tom Ford FT0617 05C",
-                category: "Tom Ford",
-                price: 400,
-                discount: 350,
-                images: ["uploads/tomford1.jpg", "uploads/tomford2.jpg"]
-            },
-            {
-                title: "Guess GU7597S 53",
-                category: "Guess",
-                price: 150,
-                discount: 130,
-                images: ["uploads/guess1.jpg", "uploads/guess2.jpg"]
-            }
+            { title: "Rayban Ferrari Red RB8331-MF001/71", category: "Rayban Ferrari", price: 250, discount: 200, images: ["uploads/Raybanferr2.png", "uploads/raybanferr3.png", "uploads/raybanferr4.jpg"] },
+            { title: "Rayban Marshall RB 3648-M The Marshall || 004/71", category: "Rayban Marshall", price: 220, discount: 180, images: ["uploads/raybanm1.jpg", "uploads/raybanm2.jpg"] },
+            { title: "Rayban Marshall RB 3648-M The Marshall || 002/58", category: "Rayban Marshall", price: 260, discount: 210, images: ["uploads/raybanm4.png", "uploads/raybanm3.png"] },
+            { title: "Rayban RB3663 004/3M", category: "Rayban", price: 200, discount: 175, images: ["uploads/ray66.jpg", "uploads/ray67.jpg"] },
+            { title: "Ralph Lauren RA 5322U 5536/87", category: "Ralph Lauren", price: 190, discount: 140, images: ["uploads/Ralph2.jpg", "uploads/Ralph1.jpg"] },
+            { title: "Rayban Ferrari Yellow RB3726-M F088/5J", category: "Rayban Ferrari", price: 220, discount: 195, images: ["uploads/Raybanferr1.png", "uploads/raybanferr5.jpg", "uploads/raybanferr6.jpg"] },
+            { title: "Rayban Classic RB7680S 90131 51", category: "Rayban", price: 200, discount: 175, images: ["uploads/raybancateye.jpg", "uploads/raybancateye2.jpg"] },
+            { title: "Rayban Cateye RB4457D 667/87", category: "Rayban", price: 380, discount: 346, images: ["uploads/Rayban Classic.png", "uploads/raybanultra.png"] },
+            { title: "Rayban RB4435 901/31 56", category: "Rayban", price: 210, discount: 182, image: "uploads/rayban2.png" },
+            { title: "Rayban RB4407 67304L 57", category: "Rayban", price: 220, discount: 194, image: "uploads/rayban3.png" },
+            { title: "Rayban Classic Rayban RB4392D 601/87 66", category: "Rayban", price: 190, discount: 164, images: ["uploads/rayban6.png", "uploads/raybannew.png"] },
+            { title: "Rayban RB4392D 645087 66", category: "Rayban", price: 190, discount: 164, image: "uploads/rayban4.png" },
+            { title: "Rayban RB4392D 645087 66", category: "Rayban", price: 220, discount: 195, image: "uploads/rb1.png" },
+            { title: "Rayban RB2283 902/31 55", category: "Rayban", price: 230, discount: 207, image: "uploads/rb2.jpg" },
+            { title: "Rayban RB3025 001/51 55", category: "Rayban", price: 230, discount: 207, image: "uploads/rb3.jpg" },
+            { title: "Rayban RB3025 002/51 58", category: "Rayban", price: 230, discount: 207, image: "uploads/rb4.jpg" },
+            { title: "Rayban RB3025 002/58 55", category: "Rayban", price: 290, discount: 255, image: "uploads/rb6.jpg" },
+            { title: "RB3025 004/71 62", category: "Rayban", price: 230, discount: 207, image: "uploads/rb0.jpg" },
+            { title: "Rayban RB2132 901 58", category: "Rayban", price: 200, discount: 182, image: "uploads/RaybanFin3.png" },
+            { title: "Rayban RB2140 6641R5 50", category: "Rayban", price: 220, discount: 195, image: "uploads/RaybanFin4.png" },
+            { title: "Emporio Armani EA4224 5017T3 57", category: "Emporio Armani", price: 240, discount: 212, image: "uploads/Armani1.png" },
+            { title: "Emporio Armani EA4047 506381 56", category: "Emporio Armani", price: 240, discount: 212, image: "uploads/Armani3.png" },
+            { title: "Emporio Armani EA3235U 5017 53", category: "Emporio Armani", price: 230, discount: 200, image: "uploads/Armani4.png" },
+            { title: "Rayban Optic RX5403D 2012 54", category: "Rayban Optics", price: 220, discount: 195, image: "uploads/raybanoptic.png" },
+            { title: "Rayban Optic RX5403D 2000 54", category: "Rayban Optics", price: 220, discount: 195, image: "uploads/raybanoptic2.png" },
+            { title: "Rayban Optic RX6375 2890 51", category: "Rayban Optics", price: 200, discount: 176, image: "uploads/Optika1.png" },
+            { title: "Rayban Optic RX6465 2509 51", category: "Rayban Optics", price: 220, discount: 195, image: "uploads/Optika2.png" },
+            { title: "Rayban Optic RX6448 2500 51", category: "Rayban Optics", price: 220, discount: 195, image: "uploads/Optika33.png" },
+            { title: "Rayban Optic RX6466 3102 51", category: "Rayban Optics", price: 240, discount: 207, image: "uploads/Optika44.png" },
+            { title: "Rayban Optic RX6496 3094 51", category: "Rayban Optics", price: 220, discount: 195, image: "uploads/Optika78.png" },
+            { title: "Rayban Optic RX6489 2503 55", category: "Rayban Optics", price: 220, discount: 195, image: "uploads/Optika77.png" },
+            { title: "Rayban Optic RX6489 2500 55", category: "Rayban Optics", price: 220, discount: 195, image: "uploads/Optika66.png" },
+            { title: "Rayban Optic RX6498 2500 55", category: "Rayban Optics", price: 220, discount: 195, image: "uploads/opticray1.png" },
+            { title: "Rayban Optic RX7017 5196 52", category: "Rayban Optics", price: 230, discount: 207, image: "uploads/Opticray2.png" },
+            { title: "Rayban Optic RX7199 5204 52", category: "Rayban Optics", price: 260, discount: 232, image: "uploads/opray3.png" },
+            { title: "Rayban Optic RX7199 8063 54", category: "Rayban Optics", price: 260, discount: 232, image: "uploads/opticray4.png" },
+            { title: "Rayban Optic RB3447 001/71 50", category: "Rayban", price: 230, discount: 207, image: "uploads/rayub.png" },
+            { title: "Rayban Optic RB3547 001/31 51", category: "Rayban", price: 220, discount: 195, image: "uploads/Rayo.png" },
+            { title: "RB3547 001/3M 51", category: "Rayban", price: 230, discount: 207, image: "uploads/rb66.jpg" },
+            { title: "RB3547 002/B1 51", category: "Rayban", price: 220, discount: 195, image: "uploads/rauo.png" },
+            { title: "RB3547 001/3M 51", category: "Rayban", price: 230, discount: 207, image: "uploads/ultraben.png" },
+            { title: "RB3548 001/BH 51", category: "Rayban", price: 230, discount: 207, image: "uploads/ultraben2.png" },
+            { title: "RB3707 9257R5 57", category: "Rayban", price: 220, discount: 195, image: "uploads/ultraben3.png" },
+            { title: "RB3735 001/31 57", category: "Rayban", price: 220, discount: 195, image: "uploads/ultraben4.png" },
+            { title: "RB3809 001/31 53", category: "Rayban", price: 220, discount: 195, image: "uploads/ylli.png" },
+            { title: "RB3809 001/31 53", category: "Rayban", price: 220, discount: 195, image: "uploads/ylli.png" },
+            { title: "RB4147 601/32 60", category: "Rayban", price: 220, discount: 194, image: "uploads/ylli2.png" },
+            { title: "RB4171 60028G 54", category: "Rayban", price: 200, discount: 175, image: "uploads/ylli3.png" },
+            { title: "RB4181 601/87 57", category: "Rayban", price: 210, discount: 182, image: "uploads/ylli4.png" },
+            { title: "RB4260D 645087 57", category: "Rayban", price: 190, discount: 164, image: "uploads/ylli5.png" },
+            { title: "Rayban Optic RX7228 2012 55", category: "Rayban Optics", price: 200, discount: 176, image: "uploads/opticr5.png" },
+            { title: "Rayban Optic RX7228 8257 55", category: "Rayban Optics", price: 320, discount: 290, image: "uploads/opticr5.png" },
+            { title: "Rayban Optic RX7228 8257 55", category: "Rayban Optics", price: 200, discount: 176, image: "uploads/rayo6.png" },
+            { title: "Persol PO0649 119656 54", category: "Persol", price: 320, discount: 294, image: "uploads/Persol1.png" },
+            { title: "Lacoste L958S 022", category: "Lacoste", price: 200, discount: 170, image: "uploads/Lacoste1.png" },
+            { title: "Lacoste L959S 022", category: "Lacoste", price: 200, discount: 170, image: "uploads/LC0.jpg" },
+            { title: "Tom Ford TF858-F-N 01A", category: "Tom Ford", price: 310, discount: 280, image: "uploads/tomford1.png" },
+            { title: "Guess GU7886 52F", category: "Guess", price: 190, discount: 153, image: "uploads/Guess1.png" },
+            { title: "Versace 2280 1002", category: "Versace", price: 330, discount: 280, image: "uploads/Versace1.png" },
+            { title: "Versace MOD.2164 1001/87", category: "Versace", price: 280, discount: 220, image: "uploads/versaceunik.png" },
+            { title: "Versace MOD.4464 GB1/87", category: "Versace", price: 300, discount: 265, image: "uploads/versaceunik2.png" },
         ];
 
-        const perPage = 12; // Number of products per page
-        let currentPage = 1; // Current page
+        // Function to render the products based on the applied filters
+        function renderProducts(filteredProducts) {
+            const productContainer = document.getElementById("productContainer");
+            productContainer.innerHTML = '';
 
-        // Function to display products on the page
-        function displayProducts(filteredProducts) {
-            const container = $("#productContainer");
-            container.empty();
-            const start = (currentPage - 1) * perPage;
-            const end = start + perPage;
-            const pageItems = filteredProducts.slice(start, end);
-            pageItems.forEach((p, index) => {
-                let imageHTML = "";
-                if (p.images && Array.isArray(p.images)) {
-                    const carouselId = `carousel-${currentPage}-${index}`;
-                    imageHTML = `
-                        <div id="${carouselId}" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                ${p.images.map((img, i) => `
-                                    <div class="carousel-item ${i === 0 ? 'active' : ''}">
-                                        <img src="${img}" class="d-block w-100" alt="${p.title}">
-                                    </div>
-                                `).join('')}
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#${carouselId}" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon"></span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#${carouselId}" data-bs-slide="next">
-                                <span class="carousel-control-next-icon"></span>
-                            </button>
-                        </div>
-                    `;
-                } else {
-                    imageHTML = `<img src="${p.images[0]}" class="card-img-top" alt="${p.title}">`;
-                }
+            filteredProducts.forEach(product => {
+                const productCard = document.createElement("div");
+                productCard.classList.add("col-md-3");
 
-                container.append(`
-                    <div class="col-md-4">
-                        <div class="card product-card">
-                            ${imageHTML}
-                            <div class="card-body">
-                                <h5 class="card-title">${p.title}</h5>
-                                <p class="card-text text-muted">${p.category}</p>
-                                <p class="product-price"><del>€${p.price}</del> <span>€${p.discount}</span></p>
+                productCard.innerHTML = `
+                    <div class="product-card">
+                        <img src="${product.images ? product.images[0] : product.image}" alt="${product.title}" />
+                        <div class="p-3">
+                            <h5>${product.title}</h5>
+                            <div class="product-price">
+                                <del>$${product.price}</del> <span>$${product.discount}</span>
                             </div>
                         </div>
                     </div>
-                `);
+                `;
+                productContainer.appendChild(productCard);
             });
         }
 
-        // Function to update pagination
-        function updatePagination(filteredProducts) {
-            const totalPages = Math.ceil(filteredProducts.length / perPage);
-            const pagination = $("#pagination");
-            pagination.empty();
-            for (let i = 1; i <= totalPages; i++) {
-                pagination.append(`
-                    <li class="page-item ${i === currentPage ? 'active' : ''}">
-                        <a class="page-link" href="#">${i}</a>
-                    </li>
-                `);
-            }
-            $(".page-link").click(function (e) {
-                e.preventDefault();
-                currentPage = parseInt($(this).text());
-                applyFilters();
-            });
-        }
+        // Initial render with all products
+        renderProducts(products);
 
-        // Function to apply filters and search
-        function applyFilters() {
-            const searchTerm = $("#searchBar").val().toLowerCase();
-            const selectedCategory = $("#categoryFilter").val();
-            const filtered = products.filter(p => {
-                const matchesSearch = p.title.toLowerCase().includes(searchTerm);
-                const matchesCategory = selectedCategory === "" || p.category === selectedCategory;
-                return matchesSearch && matchesCategory;
-            });
+        // Filter functionality for search and categories
+        document.getElementById('searchBar').addEventListener('input', () => {
+            const searchQuery = document.getElementById('searchBar').value.toLowerCase();
+            const filteredProducts = products.filter(product => product.title.toLowerCase().includes(searchQuery));
+            renderProducts(filteredProducts);
+        });
 
-            displayProducts(filtered);
-            updatePagination(filtered);
-        }
+        document.getElementById('categoryFilter').addEventListener('change', () => {
+            const selectedCategory = document.getElementById('categoryFilter').value;
+            const filteredProducts = products.filter(product => product.category === selectedCategory || !selectedCategory);
+            renderProducts(filteredProducts);
+        });
 
-        // Initialize filters on page load
-        $(document).ready(() => {
-            applyFilters();
+        document.getElementById('genderFilter').addEventListener('change', () => {
+            const selectedGender = document.getElementById('genderFilter').value;
+            const filteredProducts = products.filter(product => product.gender === selectedGender || !selectedGender);
+            renderProducts(filteredProducts);
+        });
 
-            // Apply filters when the user types in the search bar or changes category
-            $("#searchBar, #categoryFilter").on("input change", function () {
-                currentPage = 1;
-                applyFilters();
-            });
+        document.getElementById('typeFilter').addEventListener('change', () => {
+            const selectedType = document.getElementById('typeFilter').value;
+            const filteredProducts = products.filter(product => product.type === selectedType || !selectedType);
+            renderProducts(filteredProducts);
         });
     </script>
 </body>
 
 </html>
+
+
