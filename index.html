@@ -116,6 +116,22 @@
         </select>
       </div>
     </div>
+
+    <div class="col-md-4">
+  <select id="genderFilter" class="form-select">
+    <option value="">Filtro sipas gjinisë</option>
+    <option value="meshkuj">Meshkuj</option>
+    <option value="femra">Femra</option>
+  </select>
+</div>
+<div class="col-md-4">
+  <select id="typeFilter" class="form-select">
+    <option value="">Filtro sipas llojit</option>
+    <option value="dielli">Sy Dielli</option>
+    <option value="optike">Optikë</option>
+  </select>
+</div>
+    
     <div id="productContainer" class="row g-4"></div>
     <nav><ul id="pagination" class="pagination mt-4"></ul></nav>
   </div>
@@ -372,6 +388,24 @@
         applyFilters();
       });
     }
+function applyFilters() {
+  const searchTerm = $("#searchBar").val().toLowerCase();
+  const selectedCategory = $("#categoryFilter").val();
+  const selectedGender = $("#genderFilter").val();  // Filtri për meshkuj dhe femra
+  const selectedType = $("#typeFilter").val();  // Filtri për sy dielli dhe optikë
+  
+  const filtered = products.filter(p => {
+    const matchesSearch = p.title.toLowerCase().includes(searchTerm);
+    const matchesCategory = selectedCategory === "" || p.category === selectedCategory;
+    const matchesGender = selectedGender === "" || p.gender === selectedGender;  // Filtrim për gjininë
+    const matchesType = selectedType === "" || p.type === selectedType;  // Filtrim për llojin (dielli/optike)
+    
+    return matchesSearch && matchesCategory && matchesGender && matchesType;
+  });
+
+  displayProducts(filtered);
+  updatePagination(filtered);
+}
 
     function applyFilters() {
       const searchTerm = $("#searchBar").val().toLowerCase();
@@ -396,6 +430,7 @@
   </script>
 </body>
 </html>
+
 
 
 
