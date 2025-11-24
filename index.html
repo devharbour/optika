@@ -1,120 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bezzi Eyecare</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f8f8f8;
-  }
-  header {
-    background: #333;
-    color: white;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-  header h1 {
-    margin: 0;
-    font-size: 24px;
-  }
-  .filters {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  select {
-    padding: 5px;
-    font-size: 14px;
-  }
-  .container {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 0 10px;
-  }
-  .products {
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
-    gap: 20px;
-  }
-  .product-card {
-    background: white;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-  }
-  .carousel {
-    position: relative;
-    overflow: hidden;
-    border-radius: 5px;
-  }
-  .carousel img {
-    width: 100%;
-    display: none;
-  }
-  .carousel img.active {
-    display: block;
-  }
-  .carousel .prev, .carousel .next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0,0,0,0.5);
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 3px;
-  }
-  .carousel .prev { left: 5px; }
-  .carousel .next { right: 5px; }
-  .product-info {
-    margin-top: 10px;
-  }
-  .product-info h3 {
-    margin: 5px 0;
-    font-size: 16px;
-  }
-  .price-old {
-    text-decoration: line-through;
-    color: #888;
-    margin-right: 5px;
-  }
-  .price-discount {
-    color: red;
-    font-weight: bold;
-  }
-  .pagination {
-    margin: 20px 0;
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    flex-wrap: wrap;
-  }
-  .pagination button {
-    padding: 5px 10px;
-    border: 1px solid #333;
-    background: white;
-    cursor: pointer;
-  }
-  .pagination button.active {
-    background: #333;
-    color: white;
-  }
-  @media(max-width:768px){
-    .filters { flex-direction: column; }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bezzi Eyecare</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+    body { background: #f5f5f5; }
+    header {
+      background: #333;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    header h1 { margin-bottom: 10px; font-size: 24px; }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .filters select {
+      padding: 5px 10px;
+      font-size: 14px;
+      min-width: 150px;
+      cursor: pointer;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .product {
+      background: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .product img { width: 100%; border-radius: 8px; }
+
+    .carousel {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+    .carousel img { width: 100%; display: none; }
+    .carousel img.active { display: block; }
+    .carousel button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    .carousel button.prev { left: 5px; }
+    .carousel button.next { right: 5px; }
+
+    .product-title { font-weight: bold; font-size: 16px; margin-top: 5px; }
+    .product-price { font-size: 14px; }
+    .old-price { text-decoration: line-through; color: #555; margin-right: 5px; }
+    .discount-price { color: red; font-weight: bold; }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px;
+    }
+    .pagination button {
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    @media(max-width:768px){
+      header { flex-direction: column; align-items: flex-start; }
+      .filters { flex-direction: column; gap: 10px; width: 100%; }
+      .filters select { width: 100%; }
+    }
+  </style>
 </head>
 <body>
+
 <header>
   <h1>Bezzi Eyecare</h1>
   <div class="filters">
@@ -143,11 +119,13 @@
       <option>Prada Sport</option>
       <option>Hugo Boss</option>
     </select>
+
     <select id="typeFilter">
       <option value="all">Të gjitha tipet</option>
       <option value="Sunglasses">Syze dielli</option>
       <option value="Optical">Optike</option>
     </select>
+
     <select id="genderFilter">
       <option value="all">Gjini</option>
       <option value="Male">Mashkull</option>
@@ -157,100 +135,125 @@
   </div>
 </header>
 
-<div class="container">
-  <div class="products" id="productsContainer"></div>
-  <div class="pagination" id="pagination"></div>
+<div class="products" id="productContainer">
+  <!-- Products will render here -->
 </div>
+
+<div class="pagination" id="pagination"></div>
 
 <script>
 const products = [
   { title: "Rayban Ferrari Red RB8331-MF001/71", category: "Rayban Ferrari", type: "Sunglasses", gender: "Unisex", price: 250, discount: 200, images: ["uploads/Raybanferr2.png", "uploads/raybanferr3.png", "uploads/raybanferr4.jpg"] },
   { title: "Rayban Marshall RB 3648-M The Marshall || 004/71", category: "Rayban Marshall", type: "Sunglasses", gender: "Male", price: 220, discount: 180, images: ["uploads/raybanm1.jpg", "uploads/raybanm2.jpg"] },
-  { title: "Rayban Marshall RB 3648-M The Marshall || 002/58", category: "Rayban Marshall", type: "Sunglasses", gender: "Male", price: 260, discount: 210, images: ["uploads/raybanm4.png", "uploads/raybanm3.png"] },
-  { title: "Rayban RB3663 004/3M", category: "Rayban", type: "Optical", gender: "Unisex", price: 200, discount: 175, images: ["uploads/ray66.jpg", "uploads/ray67.jpg"] },
+  { title: "Rayban RB3663 004/3M", category: "Rayban", type: "Sunglasses", gender: "Unisex", price: 200, discount: 175, images: ["uploads/ray66.jpg", "uploads/ray67.jpg"] },
   { title: "Ralph Lauren RA 5322U 5536/87", category: "Ralph Lauren", type: "Sunglasses", gender: "Female", price: 190, discount: 140, images: ["uploads/Ralph2.jpg", "uploads/Ralph1.jpg"] },
-  // shto këtu të gjithë produktet që më dërgove...
+  { title: "Rayban Optic RX5403D 2012 54", category: "Rayban Optics", type: "Optical", gender: "Unisex", price: 220, discount: 195, images: ["uploads/raybanoptic.png"] },
+  { title: "Persol PO0649 119656 54", category: "Persol", type: "Sunglasses", gender: "Male", price: 320, discount: 294, images: ["uploads/Persol1.png"] },
+  { title: "Tom Ford TF858-F-N 01A", category: "Tom Ford", type: "Sunglasses", gender: "Female", price: 310, discount: 280, images: ["uploads/tomford1.png"] },
+  { title: "Burberry B 4403 3858", category: "Burberry", type: "Sunglasses", gender: "Male", price: 300, discount: 270, images: ["uploads/burberrymen3.jpg","uploads/burberrymen1.jpg","uploads/burberrymen2.jpg"] },
+  { title: "Miu Miu MU 11WS 1AB5S0 54", category: "Miu Miu", type: "Sunglasses", gender: "Female", price: 480, discount: 420, images: ["uploads/miu1.jpg"] },
+  { title: "Prada PR A58S 5AK90F 61", category: "Prada", type: "Sunglasses", gender: "Unisex", price: 420, discount: 396, images: ["uploads/Prada1.png"] },
+  // shtoni ketu te gjitha produktet e tjera me type dhe gender sipas modelit lart
 ];
 
+const productsPerPage = 6;
 let currentPage = 1;
-const productsPerPage = 8;
 
 function renderProducts(){
-  const category = document.getElementById('categoryFilter').value;
-  const type = document.getElementById('typeFilter').value;
-  const gender = document.getElementById('genderFilter').value;
+  const container = document.getElementById("productContainer");
+  container.innerHTML = "";
 
-  let filtered = products.filter(p=>{
-    return (category==='all' || p.category===category) &&
-           (type==='all' || p.type===type) &&
-           (gender==='all' || p.gender===gender);
+  const category = document.getElementById("categoryFilter").value;
+  const type = document.getElementById("typeFilter").value;
+  const gender = document.getElementById("genderFilter").value;
+
+  const filtered = products.filter(p=>{
+    return (category==="all" || p.category===category) &&
+           (type==="all" || p.type===type) &&
+           (gender==="all" || p.gender===gender);
   });
 
-  const totalPages = Math.ceil(filtered.length / productsPerPage);
   const start = (currentPage-1)*productsPerPage;
-  const end = start + productsPerPage;
-  const pageProducts = filtered.slice(start,end);
+  const end = start+productsPerPage;
+  const paginated = filtered.slice(start,end);
 
-  const container = document.getElementById('productsContainer');
-  container.innerHTML = '';
+  paginated.forEach((p,index)=>{
+    const prodDiv = document.createElement("div");
+    prodDiv.className = "product";
 
-  pageProducts.forEach((p,i)=>{
-    let images = p.images || [p.image];
-    const card = document.createElement('div');
-    card.className = 'product-card';
-    card.innerHTML = `
-      <div class="carousel" id="carousel-${i}">
-        ${images.map((img,index)=>`<img src="${img}" class="${index===0?'active':''}">`).join('')}
-        ${images.length>1?`<button class="prev" onclick="prevSlide(${i})">&#10094;</button><button class="next" onclick="nextSlide(${i})">&#10095;</button>`:''}
-      </div>
-      <div class="product-info">
-        <h3>${p.title}</h3>
-        <div><span class="price-old">${p.price}$</span> <span class="price-discount">${p.discount}$</span></div>
-      </div>
-    `;
-    container.appendChild(card);
+    // Carousel
+    if(p.images && p.images.length>1){
+      const carousel = document.createElement("div");
+      carousel.className = "carousel";
+      p.images.forEach((imgSrc,i)=>{
+        const img = document.createElement("img");
+        img.src = imgSrc;
+        img.className = i===0?"active":"";
+        carousel.appendChild(img);
+      });
+
+      const prevBtn = document.createElement("button");
+      prevBtn.innerText = "<";
+      prevBtn.className = "prev";
+      prevBtn.onclick = ()=>carouselNav(carousel,-1);
+
+      const nextBtn = document.createElement("button");
+      nextBtn.innerText = ">";
+      nextBtn.className = "next";
+      nextBtn.onclick = ()=>carouselNav(carousel,1);
+
+      carousel.appendChild(prevBtn);
+      carousel.appendChild(nextBtn);
+      prodDiv.appendChild(carousel);
+    } else {
+      const img = document.createElement("img");
+      img.src = p.images[0] || p.image;
+      prodDiv.appendChild(img);
+    }
+
+    const title = document.createElement("div");
+    title.className = "product-title";
+    title.innerText = p.title;
+    prodDiv.appendChild(title);
+
+    const priceDiv = document.createElement("div");
+    priceDiv.className = "product-price";
+    priceDiv.innerHTML = `<span class="old-price">${p.price}$</span><span class="discount-price">${p.discount}$</span>`;
+    prodDiv.appendChild(priceDiv);
+
+    container.appendChild(prodDiv);
   });
 
-  renderPagination(totalPages);
+  renderPagination(filtered.length);
 }
 
-function renderPagination(totalPages){
-  const pagination = document.getElementById('pagination');
-  pagination.innerHTML = '';
-  for(let i=1;i<=totalPages;i++){
-    const btn = document.createElement('button');
+function carouselNav(carousel,dir){
+  const imgs = carousel.querySelectorAll("img");
+  let current = Array.from(imgs).findIndex(img=>img.classList.contains("active"));
+  imgs[current].classList.remove("active");
+  current = (current+dir+imgs.length)%imgs.length;
+  imgs[current].classList.add("active");
+}
+
+function renderPagination(total){
+  const pagDiv = document.getElementById("pagination");
+  pagDiv.innerHTML = "";
+  const pages = Math.ceil(total/productsPerPage);
+  for(let i=1;i<=pages;i++){
+    const btn = document.createElement("button");
     btn.innerText = i;
-    if(i===currentPage) btn.classList.add('active');
+    if(i===currentPage) btn.style.fontWeight="bold";
     btn.onclick = ()=>{ currentPage=i; renderProducts(); };
-    pagination.appendChild(btn);
+    pagDiv.appendChild(btn);
   }
 }
 
-function prevSlide(index){
-  const carousel = document.getElementById(`carousel-${index}`);
-  const imgs = carousel.querySelectorAll('img');
-  let current = Array.from(imgs).findIndex(img=>img.classList.contains('active'));
-  imgs[current].classList.remove('active');
-  let prev = (current-1+imgs.length)%imgs.length;
-  imgs[prev].classList.add('active');
-}
-
-function nextSlide(index){
-  const carousel = document.getElementById(`carousel-${index}`);
-  const imgs = carousel.querySelectorAll('img');
-  let current = Array.from(imgs).findIndex(img=>img.classList.contains('active'));
-  imgs[current].classList.remove('active');
-  let next = (current+1)%imgs.length;
-  imgs[next].classList.add('active');
-}
-
-document.getElementById('categoryFilter').addEventListener('change',()=>{currentPage=1; renderProducts();});
-document.getElementById('typeFilter').addEventListener('change',()=>{currentPage=1; renderProducts();});
-document.getElementById('genderFilter').addEventListener('change',()=>{currentPage=1; renderProducts();});
+document.getElementById("categoryFilter").addEventListener("change",()=>{ currentPage=1; renderProducts(); });
+document.getElementById("typeFilter").addEventListener("change",()=>{ currentPage=1; renderProducts(); });
+document.getElementById("genderFilter").addEventListener("change",()=>{ currentPage=1; renderProducts(); });
 
 renderProducts();
 </script>
+
 </body>
 </html>
-
-
