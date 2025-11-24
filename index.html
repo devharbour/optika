@@ -267,8 +267,38 @@
             renderProducts(filteredProducts);
         });
     </script>
+<script>
+    function filterProducts() {
+    const searchQuery = document.getElementById('searchBar').value.toLowerCase();
+    const selectedCategory = document.getElementById('categoryFilter').value;
+    const selectedGender = document.getElementById('genderFilter').value;
+    const selectedType = document.getElementById('typeFilter').value;
+
+    const filteredProducts = products.filter(product => {
+        const matchesSearch = product.title.toLowerCase().includes(searchQuery);
+        const matchesCategory = selectedCategory ? product.category === selectedCategory : true;
+        const matchesGender = selectedGender ? product.gender === selectedGender : true;
+        const matchesType = selectedType ? product.type === selectedType : true;
+
+        return matchesSearch && matchesCategory && matchesGender && matchesType;
+    });
+
+    renderProducts(filteredProducts);
+}
+
+// Event listeners për filtrat
+document.getElementById('searchBar').addEventListener('input', filterProducts);
+document.getElementById('categoryFilter').addEventListener('change', filterProducts);
+document.getElementById('genderFilter').addEventListener('change', filterProducts);
+document.getElementById('typeFilter').addEventListener('change', filterProducts);
+
+// Renderim i të gjithë produkteve në fillim
+renderProducts(products);
+</script>
 </body>
 
+
 </html>
+
 
 
