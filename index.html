@@ -239,36 +239,31 @@
             });
         }
 
-        // Initial render with all products
-        renderProducts(products);
+     <script>
+         function renderProducts(filteredProducts) {
+    const productContainer = document.getElementById("productContainer");
+    productContainer.innerHTML = '';
 
-        // Filter functionality for search and categories
-        document.getElementById('searchBar').addEventListener('input', () => {
-            const searchQuery = document.getElementById('searchBar').value.toLowerCase();
-            const filteredProducts = products.filter(product => product.title.toLowerCase().includes(searchQuery));
-            renderProducts(filteredProducts);
-        });
+    filteredProducts.forEach(product => {
+        const productCard = document.createElement("div");
+        productCard.classList.add("col-md-3");
 
-        document.getElementById('categoryFilter').addEventListener('change', () => {
-            const selectedCategory = document.getElementById('categoryFilter').value;
-            const filteredProducts = products.filter(product => product.category === selectedCategory || !selectedCategory);
-            renderProducts(filteredProducts);
-        });
+        productCard.innerHTML = `
+            <div class="product-card">
+                <img src="${product.images ? product.images[0] : product.image}" alt="${product.title}" />
+                <div class="p-3">
+                    <h5>${product.title}</h5>
+                    <div class="product-price">
+                        <del>$${product.price}</del> <span>$${product.discount}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+        productContainer.appendChild(productCard);
+    });
+}
 
-        document.getElementById('genderFilter').addEventListener('change', () => {
-            const selectedGender = document.getElementById('genderFilter').value;
-            const filteredProducts = products.filter(product => product.gender === selectedGender || !selectedGender);
-            renderProducts(filteredProducts);
-        });
-
-        document.getElementById('typeFilter').addEventListener('change', () => {
-            const selectedType = document.getElementById('typeFilter').value;
-            const filteredProducts = products.filter(product => product.type === selectedType || !selectedType);
-            renderProducts(filteredProducts);
-        });
-    </script>
-<script>
-    function filterProducts() {
+function filterProducts() {
     const searchQuery = document.getElementById('searchBar').value.toLowerCase();
     const selectedCategory = document.getElementById('categoryFilter').value;
     const selectedGender = document.getElementById('genderFilter').value;
@@ -294,11 +289,11 @@ document.getElementById('typeFilter').addEventListener('change', filterProducts)
 
 // Renderim i të gjithë produkteve në fillim
 renderProducts(products);
-</script>
+    </script>
 </body>
 
-
 </html>
+
 
 
 
